@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>二井 雄大 | Yudai Futai</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FFFFFF;
+      --surface: #FFFFFF;
+      --border: #BFDBFE;
+      --text-primary: #1E3A5F;
+      --text-secondary: #64748B;
+      --accent: #1D4ED8;
+      --accent-light: #DBEAFE;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-name {
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .hero-name-en {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 540px;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-primary);
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* Skills table */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .skills-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .skills-table th:first-child { border-radius: 8px 0 0 8px; }
+    .skills-table th:last-child { border-radius: 0 8px 8px 0; }
+
+    .skills-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .skills-table tr:last-child td { border-bottom: none; }
+
+    .level {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .level-S { background: #fef3c7; color: #92400e; }
+    .level-A { background: #d1fae5; color: #065f46; }
+    .level-B { background: #e0e7ff; color: #3730a3; }
+
+    /* Links */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .link-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+      text-decoration: none;
+    }
+
+    .link-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .testimonial {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 12px;
+      left: 20px;
+      font-size: 48px;
+      color: var(--border);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      padding-top: 16px;
+    }
+
+    .testimonial-source {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Contact */
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .contact-label {
+      min-width: 120px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .contact-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 12px;
+      background: var(--accent-light);
+      color: var(--text-secondary);
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+
+    .nav-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 12px; }
+      .link-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 44px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-name">Raise your life</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#voice">Voice</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-name">Futai Yudai</div>
+      <div class="hero-tagline">
+        連続起業家(AIOps, HRxAI) / HR アドバイザー / キャリアコンサルタント
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2>About</h2>
+      <p class="summary-text">
+        2013年京都大学経済学部卒業。楽天株式会社へ新卒入社しECコンサルタントとして従事。その後、IoTスタートアップ Qrio にて事業開発マネージャーとして新製品のクラウドファンディングやEC運営を担当。<br><br>
+        2016年、AIヘッドハンティングサービスを展開する株式会社 scouty（現 LAPRAS株式会社）を共同創業。取締役COOとしてビジネス・コーポレートサイドの幅広い領域をカバーし、役員退任後も4年ほどセールスを中心に活動。<br><br>
+        2020年よりHR顧問業を開始。2025年よりディプコアにてスタートアップ支援を中心とした人材紹介エージェントとして活動。<br><br>
+        2026年、Rakuda.AIの代表取締役就任。0→1の事業立ち上げ・グロース経験を元にしたBizOps・AIOpsの支援が得意。既存SaaSで満たしきれないニーズに対して、早く・持続的に支援するのが得意。<br><br>
+        趣味はポーカーと体操競技。
+      </p>
+    </div>
+  </section>
+
+  <!-- Strong Points -->
+  <section id="strong-points">
+    <div class="container">
+      <h2>Strong Points as Agent</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-label">01</div>
+          <div class="card-text">共同創業者・事業責任者・役員を経験しており、スタートアップのリアルをお伝えできる</div>
+        </div>
+        <div class="card">
+          <div class="card-label">02</div>
+          <div class="card-text">元起業家のコネクションを活かし、多数の企業で経営陣から直接ヒアリングしている</div>
+        </div>
+        <div class="card">
+          <div class="card-label">03</div>
+          <div class="card-text">事業開発 / セールス / CS / マーケティング / コーポレート等、事業サイドの現場キャリアを幅広く積んでいる</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <h2>Skill Summary as HR Adviser</h2>
+
+      <div class="card-grid" style="margin-bottom: 32px;">
+        <div class="card">
+          <div class="card-label">エンジニア採用</div>
+          <div class="card-text">LAPRAS時代の知見を活かし、スカウト文面・JD作成・選考設計・技術ブランディング・クロージングを支援</div>
+        </div>
+        <div class="card">
+          <div class="card-label">創業期の組織OS構築</div>
+          <div class="card-text">評価・報酬制度やSOポリシーなど、組織が拡大しても耐えうる「最低限かつ拡張性のある仕組み」の導入支援</div>
+        </div>
+        <div class="card">
+          <div class="card-label">事業がわかるHR専門家</div>
+          <div class="card-text">0→1〜1→10でのスタートアップCOO経験、数百社へのCS支援経験に基づいた実践的サポート</div>
+        </div>
+      </div>
+
+      <table class="skills-table">
+        <thead>
+          <tr>
+            <th>領域</th>
+            <th>スキル</th>
+            <th>Lv</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="6">採用</td>
+            <td>採用戦略策定</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>採用要件定義 / JD作成</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>アトラクトストーリー作成</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>選考プロセス設計・運用</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>候補者体験（CX）向上</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>採用広報・技術広報</td>
+            <td><span class="level level-A">A</span></td>
+          </tr>
+          <tr>
+            <td rowspan="5">組織開発</td>
+            <td>アーリースタートアップ向け人事制度設計</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>人事評価制度設計</td>
+            <td><span class="level level-A">A</span></td>
+          </tr>
+          <tr>
+            <td>インナーブランディング</td>
+            <td><span class="level level-A">A</span></td>
+          </tr>
+          <tr>
+            <td>オンボーディング</td>
+            <td><span class="level level-A">A</span></td>
+          </tr>
+          <tr>
+            <td>従業員エンゲージメント</td>
+            <td><span class="level level-A">A</span></td>
+          </tr>
+          <tr>
+            <td rowspan="3">HRBP / 戦略人事</td>
+            <td>HRBP（事業課題を組織・人事面から解決）</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>組織シミュレーション</td>
+            <td><span class="level level-S">S</span></td>
+          </tr>
+          <tr>
+            <td>人員配置・抜擢</td>
+            <td><span class="level level-A">A</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Candidate Voice -->
+  <section id="voice">
+    <div class="container">
+      <h2>Candidate Voice</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">
+            初めてのベンチャー・スタートアップ転職でしたが、二井さんご自身に起業のご経験があり、企業への理解も深く、非常に解像度の高いアドバイスをいただきました。選考プロセスでは、私のWillを深く汲み取った上で幅広い可能性をご提案くださり、最後まで親身に寄り添っていただきました。自分一人ではたどり着けなかったご縁だと感じています。
+          </p>
+          <div class="testimonial-source">Google クチコミ</div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">
+            二井さんには非常に親身になって相談に乗ってくださいました。こちらの希望を単に聞くだけでなく、将来のキャリアパスや私自身の性格・適正を考えたアドバイスが印象的でした。業界知識も豊富で非常に信頼がおけました。質の高い転職活動を行いたい方に強くオススメできるエージェントさんです。
+          </p>
+          <div class="testimonial-source">Google クチコミ</div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">
+            客観的なアドバイスが考えを整理するのにとても役立ちました。私の希望だけでなく今後のキャリアについて真摯に考えて応募先を探してくれました。相談してみてよかったです。二井さん、ありがとうございました！
+          </p>
+          <div class="testimonial-source">Google クチコミ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links -->
+  <section id="links">
+    <div class="container">
+      <h2>Links</h2>
+      <div class="link-grid">
+        <a class="link-item" href="https://x.com/futai23" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.844L1.258 2.25h6.773l4.257 5.626L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          Twitter / X
+        </a>
+        <a class="link-item" href="https://www.facebook.com/yudai.futai" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a class="link-item" href="https://note.com/futai23" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.583 0H3.417C1.53 0 0 1.53 0 3.417v17.166C0 22.47 1.53 24 3.417 24h17.166C22.47 24 24 22.47 24 20.583V3.417C24 1.53 22.47 0 20.583 0zM8.25 17.25H6.75V6.75h1.5v10.5zm9 0H9.75v-1.5h7.5v1.5zm0-3H9.75v-1.5h7.5v1.5zm0-3H9.75v-1.5h7.5v1.5zm0-3H9.75V6.75h7.5v1.5z"/></svg>
+          note
+        </a>
+        <a class="link-item" href="https://www.linkedin.com/in/yudaifutai/" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a class="link-item" href="https://lapras.com/public/futai23" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          LAPRAS
+        </a>
+        <a class="link-item" href="https://github.com/futai23" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a class="link-item" href="https://speakerdeck.com/futai23" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Speaker Deck
+        </a>
+        <a class="link-item" href="https://youtrust.jp/users/futai23" target="_blank" rel="noopener">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          YOUTRUST
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-label">メール（個人）</span>
+          <a href="mailto:f.yudai23@gmail.com">f.yudai23@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Twitter / X</span>
+          <a href="https://x.com/futai23" target="_blank" rel="noopener">@futai23</a>
+        </div>
+      </div>
+      <p class="contact-note">
+        すでに繋がっている方は Facebook / YOUTRUST でのご連絡にも対応可能です。<br>
+        「キャリアに迷っている」「市場価値が知りたい」「壁打ち相手が欲しい」など、お気軽にご連絡ください。
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 Yudai Futai
+    </div>
+  </footer>
+
+</body>
+</html>
