@@ -285,6 +285,12 @@
       color: var(--text-primary);
     }
 
+    .nav-logo {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
     .nav-links {
       display: flex;
       gap: 24px;
@@ -311,7 +317,9 @@
 
   <nav>
     <div class="nav-inner">
-      <span class="nav-name">Raise your life</span>
+      <a href="#" class="nav-logo-link" aria-label="Raiseyourlife">
+        <img src="logo.svg" alt="Raiseyourlife" class="nav-logo" />
+      </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
