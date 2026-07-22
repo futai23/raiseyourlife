@@ -1,5 +1,5 @@
 ---
-name: stud8-hi-lo-coach
+name: stud8
 description: >-
   Run interactive Seven Card Stud Eight-or-Better (Stud 8 / Stud Hi-Lo) 3rd-street
   starting-hand training drills, grounded in Kevin Haney's Card Player hand
